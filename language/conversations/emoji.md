@@ -19,4 +19,4 @@ Cool, me too. Bye
 * goodbye
 
 < 😿
-* greeting
+* goodbye
