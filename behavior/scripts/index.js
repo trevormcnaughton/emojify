@@ -3,21 +3,28 @@
 exports.handle = (client) => {
   // Create steps
   const sayHello = client.createStep({
-    satisfied() {
-      return Boolean(client.getConversationState().helloSent)
-    },
+    satisfied() { return false },
 
     prompt() {
-      client.addResponse('welcome')
-      client.addResponse('provide/documentation', {
-        documentation_link: 'http://docs.init.ai',
-      })
-      client.addResponse('provide/instructions')
+      client.addResponse('greeting')
+      client.done()
+    }
+  })
 
-      client.updateConversationState({
-        helloSent: true
-      })
+  const howsItGoing = client.createStep({
+    satisfied() { return false },
 
+    prompt() {
+      client.addResponse('hows_it_going')
+      client.done()
+    }
+  })
+
+  const goodbye = client.createStep({
+    satisfied() { return false },
+
+    prompt() {
+      client.addResponse('goodbye')
       client.done()
     }
   })
@@ -35,15 +42,17 @@ exports.handle = (client) => {
 
   client.runFlow({
     classifications: {
-      // map inbound message classifications to names of streams
-    },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
+      'greeting': 'handleGreeting',
+      'goodbye': 'handleGoodbye',
+      'howsItGoing': 'handleHowsItGoing',
     },
     streams: {
       main: 'onboarding',
       onboarding: [sayHello],
       end: [untrained],
+      handleGreeting: sayHello,
+      handleGoodbye: goodbye,
+      handleHowsItGoing: howsItGoing,
     },
   })
 }
