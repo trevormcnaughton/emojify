@@ -7,16 +7,16 @@ Hey
 * greeting
 
 < 👋
-* greeting
+* reply/greeting
 
 How are you?
 * how_are_you
 
 < 😸
-* how_are_you
+* reply/how_are_you
 
 ok, bye
 * goodbye
 
 < 😾
-* goodbye
+* reply/goodbye
