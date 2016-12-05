@@ -10,13 +10,13 @@ Hey
 * greeting
 
 How are you?
-* turing/human
+* how_are_you
 
 < 😸
-* goodbye
+* how_are_you
 
 ok, bye
 * goodbye
 
 < 😾
-* greeting
+* goodbye
